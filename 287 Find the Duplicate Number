@@ -1,0 +1,36 @@
+//二分法 nlnn
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int len=nums.length;
+        int left=1;
+        int right=len-1;
+        while(left<right){
+            int mid=(left+right)/2;
+            int count=0;
+            for(int i:nums){
+                if(i<=mid) count++;
+            }
+            if(count>mid) right=mid;
+            else left=mid+1;
+        }
+        return left;
+    }
+}
+//实际上是个链表的环
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int len=nums.length;
+        int fp=nums[nums[0]];
+        int sp=nums[0];
+        while(sp!=fp){
+            fp=nums[nums[fp]];
+            sp=nums[sp];
+        }
+        int start=0;
+        while(start!=sp){
+            start=nums[start];
+            sp=nums[sp];
+        }
+        return sp;
+    }
+}

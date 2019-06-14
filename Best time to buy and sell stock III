@@ -1,0 +1,32 @@
+//n*n
+class Solution {
+    public int maxProfit(int[] prices) {
+        int res=0;
+        if(prices==null||prices.length<2)
+            return res;
+        int left=0;
+        int right=0;
+        for(int i=0;i<prices.length;i++){
+            left=maxPro(prices,0,i-1);
+            right=maxPro(prices,i,prices.length-1);
+            res=Math.max(res,left+right);
+        }
+        return res;
+    }
+    public int maxPro(int[] prices,int start,int end){
+        int res=0;
+        if(start<0||end<0||end>prices.length-1||start==end)
+            return res;
+        int min=prices[start];
+        for(int i=start+1;i<=end;i++){
+            if(prices[i]>min)
+                res=Math.max(res,prices[i]-min);
+            else
+                min=prices[i];
+        }
+        return res;
+    }
+}
+
+//n
+

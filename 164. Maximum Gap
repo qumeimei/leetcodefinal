@@ -1,0 +1,30 @@
+class Solution {
+    public int maximumGap(int[] nums) {
+        int res=0;
+        if(nums==null||nums.length<2) return res;
+        int min=nums[0],max=nums[0];
+        for(int i:nums){
+            min=Math.min(min,i);max=Math.max(max,i);
+        }
+        if(min==max) return res;
+        int step=(max-min)/nums.length+1;
+        int[][] bucket=new int[nums.length][];
+        for(int i:nums){
+            int index=(i-min)/step;
+            if(bucket[index]==null) 
+                bucket[index]=new int[]{i,i};
+            else{
+                bucket[index][0]=Math.min(bucket[index][0],i);
+                bucket[index][1]=Math.max(bucket[index][1],i);
+            }
+        }
+        int pre=bucket[0][1];
+        for(int i=1;i<nums.length;i++){
+            if(bucket[i]!=null){
+                res=Math.max(res,bucket[i][0]-pre);
+                pre=bucket[i][1];
+            }
+        }
+        return res;
+}
+}164. Maximum Gap
