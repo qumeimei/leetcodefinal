@@ -37,4 +37,36 @@ class Solution {
         }
     throw new IllegalArgumentException();
     }
+//ln(x+y) Best solution:  O(log(m + n)), O(log(k)) 找到最小的一半
+    class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        if(nums1==null||nums1.length==0)
+            return (nums2[(nums2.length-1)/2]+nums2[nums2.length/2])/2.0;
+        if(nums2==null||nums2.length==0)
+            return (nums1[(nums1.length-1)/2]+nums1[nums1.length/2])/2.0;
+        int a=nums1.length;
+        int b=nums2.length;
+        if((a+b)%2==0)
+            return (findk(nums1,0,nums2,0,(a+b)/2)+findk(nums1,0,nums2,0,(a+b)/2+1))/2;
+        else
+            return findk(nums1,0,nums2,0,(a+b)/2+1);
+    }
+    public double findk(int[] nums1,int start1,int[] nums2,int start2,int k){
+        if(start1>=nums1.length) return nums2[start2+k-1]/1.0;
+        if(start2>=nums2.length) return nums1[start1+k-1]/1.0;
+        if(k==1) return Math.min(nums1[start1],nums2[start2]);
+
+        int midIndex1=start1+k/2-1;
+        int midIndex2=start2+k-k/2-1;
+        int stop1=midIndex1>=nums1.length?Integer.MAX_VALUE:nums1[midIndex1];
+        int stop2=midIndex2>=nums2.length?Integer.MAX_VALUE:nums2[midIndex2];
+        if(stop1>stop2)
+            return findk(nums1,start1,nums2,midIndex2+1,k/2);
+        else if(stop1==stop2)
+            return stop1/1.0;
+        else
+            return findk(nums1,midIndex1+1,nums2,start2,k-k/2);
+    }
 }
+}
+//k 挨个找
