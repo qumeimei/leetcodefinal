@@ -114,3 +114,34 @@ class Solution {
         return res;
     }
 }
+
+//n 分割成k份，然后左大，右大，然后求最大
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        if(nums==null||nums.length==0)
+            return new int[0];
+        int n=nums.length;
+        int[] res=new int[n-k+1];
+        int divide=n/k;
+        int[] right_max=new int[n];
+        int[] left_max=new int[n];
+        for(int i=0;i<n;i++){
+            if(i%k==0)
+                right_max[i]=nums[i];
+            else{
+                right_max[i]=Math.max(right_max[i-1],nums[i]);
+            }
+        }
+        for(int j=n-1;j>=0;j--){
+            if(j%k==0||j==n-1)
+                left_max[j]=nums[j];
+            else{
+                left_max[j]=Math.max(left_max[j+1],nums[j]);
+            }
+        }
+        for(int i=0;i<n-k+1;i++){
+            res[i]=Math.max(left_max[i],right_max[i+k-1]);
+        }
+        return res;
+    }
+}
