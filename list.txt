@@ -1,21 +1,7 @@
 
 Substring		
-395	Longest Substring with At Least K Repeating Characters	Sliding Window
-159	Longest Substring with At Most Two Distinct Characters	Sliding Window
-Palindrome		
-125	Valid Palindrome	
-266	Palindrome Permutation	
-5	Longest Palindromic Substring	
-9	Palindrome Number	
-214	Shortest Palindrome	
-336	Palindrome Pairs	
-131	Palindrome Partitioning	
-132	Palindrome Partitioning II	
-267	Palindrome Permutation II	
-Parentheses		
-20	Valid Parentheses	
-22	Generate Parentheses	
-32	Longest Valid Parentheses	
+159	Longest Substring with At Most Two Distinct Characters	Sliding Windo
+Parentheses	
 241	Different Ways to Add Parentheses	
 301	Remove Invalid Parentheses	
 Subsequence		
